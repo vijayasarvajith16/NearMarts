@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "order.placed",
+  "description": "Published when a buyer places a new order.",
+  "type": "object",
+  "required": ["eventId", "eventType", "timestamp", "payload"],
+  "properties": {
+    "eventId":   { "type": "string", "format": "uuid" },
+    "eventType": { "type": "string", "const": "order.placed" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "required": ["orderId", "vendorId", "items"],
+      "properties": {
+        "orderId":  { "type": "string" },
+        "vendorId": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["productId", "quantity"],
+            "properties": {
+              "productId": { "type": "string" },
+              "quantity":  { "type": "integer", "minimum": 1 }
+            }
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "eventId":   "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "eventType": "order.placed",
+    "timestamp": "2024-01-15T10:30:00.000Z",
+    "payload": {
+      "orderId":  "ord_abc123",
+      "vendorId": "ven_xyz456",
+      "items": [
+        { "productId": "prod_111", "quantity": 2 },
+        { "productId": "prod_222", "quantity": 1 }
+      ]
+    }
+  }
+}

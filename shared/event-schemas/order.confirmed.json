@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "order.confirmed",
+  "description": "Published when a vendor confirms/accepts an order.",
+  "type": "object",
+  "required": ["eventId", "eventType", "timestamp", "payload"],
+  "properties": {
+    "eventId":   { "type": "string", "format": "uuid" },
+    "eventType": { "type": "string", "const": "order.confirmed" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": {
+      "type": "object",
+      "required": ["orderId", "buyerId", "vendorId"],
+      "properties": {
+        "orderId":  { "type": "string" },
+        "buyerId":  { "type": "string" },
+        "vendorId": { "type": "string" }
+      }
+    }
+  },
+  "example": {
+    "eventId":   "d4e5f6a7-b8c9-0123-defa-234567890123",
+    "eventType": "order.confirmed",
+    "timestamp": "2024-01-15T10:40:00.000Z",
+    "payload": {
+      "orderId":  "ord_abc123",
+      "buyerId":  "usr_buyer_001",
+      "vendorId": "ven_xyz456"
+    }
+  }
+}

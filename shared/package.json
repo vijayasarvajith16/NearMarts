@@ -1,0 +1,11 @@
+{
+  "name": "nearmart-shared",
+  "version": "1.0.0",
+  "description": "Shared middleware and utilities for NearMart microservices",
+  "private": true,
+  "dependencies": {
+    "amqplib": "^0.10.4",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^11.0.0"
+  }
+}
